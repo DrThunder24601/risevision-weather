@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Windy Weather Display</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+    }
+    #windy {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="windy"></div>
+
+  <script>
+    const script = document.createElement('script');
+    script.src = 'https://api.windy.com/assets/lib/windy-widget.min.js';
+    script.async = true;
+
+    script.onload = () => {
+      console.log("✅ Windy script loaded");
+
+      const options = {
+        key: 'fpTeS0EaPW0MnLrQyyGskRB8lWoFUmyF', // Your Windy API key
+        lat: 42.537811,
+        lon: -92.453400,
+        zoom: 6,
+        overlay: 'temp', // 'wind', 'temp', or 'rain'
+        container: document.getElementById('windy')
+      };
+
+      // Delay execution slightly to ensure Windy loads
+      setTimeout(() => {
+        if (typeof windyInit !== 'undefined') {
+          windyInit(options);
+        } else {
+          console.error("🚫 Windy Init is not
